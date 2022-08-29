@@ -1,7 +1,5 @@
+import { ProfileCard } from '../../components/ProfileCard'
+
 export function Home() {
-  return (
-    <>
-      <h1>Home</h1>
-    </>
-  )
+  return <ProfileCard />
 }
