@@ -8,18 +8,28 @@ export const Container = styled.div`
   border-radius: 10px;
   padding: 2rem;
   gap: 0.5rem;
+
+   @media(max-width: 768px) {
+    padding: 1rem;
+    margin-top: 1rem;
+  }
 `
 
 export const HeaderCard = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 1.25rem;
+
   a {
     font-weight: 700;
     font-size: 0.75rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+
+    :hover {
+      border-color: ${(props) => props.theme.blue};
+    }
   }
 `
 
@@ -28,6 +38,10 @@ export const Title = styled.h1`
   font-size: 1.5rem;
   line-height: 130%;
   color: ${(props) => props.theme['base-title']};
+
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
 `
 
 export const FooterCard = styled.footer`
@@ -44,6 +58,21 @@ export const FooterCard = styled.footer`
     svg {
       width: 1.125rem;
       height: 1.125rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    span:nth-child(1) {
+      display: none;
+    }
+
+    span {
+      font-size: 0.85rem;
+
+      svg {
+        width: 0.85rem;
+        height: 0.85rem;
+      }
     }
   }
 `

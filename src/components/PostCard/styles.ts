@@ -1,14 +1,21 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
+export const Container = styled.a`
   background: ${(props) => props.theme['base-post']};
   border-radius: 10px;
+  border: 2px solid transparent;
   padding: 2rem;
   height: 260px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  transition: border 0.2s;
+
+  :hover,
+  :focus {
+    border: 2px solid ${(props) => props.theme['base-label']};
+  }
 
   header {
     display: flex;
@@ -31,10 +38,15 @@ export const Container = styled.div`
 `
 
 export const Description = styled.span`
+  color: ${(props) => props.theme['base-text']};
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   line-height: 160%;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
+
+  @media (max-width: 768px) {
+    -webkit-line-clamp: 3;
+  }
 `

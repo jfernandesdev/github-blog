@@ -7,6 +7,11 @@ export const HeaderContainer = styled.div`
   display: flex;
   justify-content: center;
   padding-top: 4rem;
-
   background: url(${BackgroundHeader});
+  background-size: cover;
+
+  @media (max-width: 768px) {
+    height: 200px;
+    padding-top: 2rem;
+  }
 `

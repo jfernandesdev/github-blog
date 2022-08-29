@@ -10,6 +10,28 @@ export const GlobalStyle = createGlobalStyle`
   a {
     color: ${(props) => props.theme.blue};
     text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 0;
+  }
+  ::-webkit-scrollbar,
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: ${(props) => props.theme['base-label']};
+  }
+  ::-webkit-scrollbar,
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  :focus {
+    outline: none;
+    border: 1px solid ${(props) => props.theme.blue};
   }
 
   body {
