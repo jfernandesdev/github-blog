@@ -8,7 +8,7 @@ import {
   FaComment,
 } from 'react-icons/fa'
 
-export function PostInfoCard() {
+export function PostInfoHeader() {
   return (
     <Container>
       <HeaderCard>

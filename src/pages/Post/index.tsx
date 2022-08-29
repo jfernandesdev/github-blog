@@ -1,11 +1,11 @@
-import { PostInfoCard } from '../../components/PostInfoCard'
+import { PostInfoHeader } from '../../components/PostInfoHeader'
 
 import { PostContent } from './styles'
 
 export function Post() {
   return (
     <>
-      <PostInfoCard />
+      <PostInfoHeader />
 
       <PostContent>
         <p>
