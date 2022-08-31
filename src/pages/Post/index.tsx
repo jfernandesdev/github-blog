@@ -1,30 +1,67 @@
+import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { formatDistanceToNow } from 'date-fns'
+import { ptBR } from 'date-fns/locale'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+
+import { api } from '../../lib/api'
+
 import { PostInfoHeader } from '../../components/PostInfoHeader'
 
 import { PostContent } from './styles'
 
+interface PostData {
+  title: string
+  number: number
+  createdAt: string
+  body: string
+  author: string
+  numberOfComments: number
+  urlGithub: string
+}
+
 export function Post() {
+  const [post, setPost] = useState<PostData>({} as PostData)
+  const { id } = useParams<{ id: string }>()
+
+  useEffect(() => {
+    async function loadPost() {
+      const { data } = await api.get(
+        `repos/${import.meta.env.VITE_GITHUB_REPOSITORY}/issues/${id}`,
+      )
+
+      const postData = {
+        title: data.title,
+        number: data.number,
+        createdAt: formatDistanceToNow(new Date(data.created_at), {
+          addSuffix: true,
+          locale: ptBR,
+        }),
+        body: data.body,
+        author: data.user.login,
+        numberOfComments: data.comments,
+        urlGithub: data.html_url,
+      }
+
+      setPost(postData)
+    }
+
+    loadPost()
+  }, [id])
+
   return (
     <>
-      <PostInfoHeader />
+      <PostInfoHeader
+        title={post.title}
+        urlGithub={post.urlGithub}
+        author={post.author}
+        date={post.createdAt}
+        comments={post.numberOfComments}
+      />
 
       <PostContent>
-        <p>
-          Programming languages all have built-in data structures, but these
-          often differ from one language to another. This article attempts to
-          list the built-in data structures available in JavaScript and what
-          properties they have. These can be used to build other data
-          structures. Wherever possible, comparisons with other languages are
-          drawn.
-        </p>
-
-        <a>Dynamic typing</a>
-
-        <p>
-          JavaScript is a loosely typed and dynamic language. Variables in
-          JavaScript are not directly associated with any particular value type,
-          and any variable can be assigned (and re-assigned) values of all
-          types:
-        </p>
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.body}</ReactMarkdown>
       </PostContent>
     </>
   )

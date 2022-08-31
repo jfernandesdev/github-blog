@@ -1,20 +1,29 @@
+import { NavLink } from 'react-router-dom'
 import { Container, Description } from './styles'
 
-export function PostCard() {
-  return (
-    <Container href="/post">
-      <header>
-        <h4>JavaScript data types and data structures</h4>
-        <span>Há 1 dia</span>
-      </header>
+interface PostCardProps {
+  number: string
+  title: string
+  createdAt: string
+  description: string
+}
 
-      <Description>
-        Programming languages all have built-in data structures, but these often
-        differ from one language to another. This article attempts to list the
-        built-in data structures available in JavaScript and what properties
-        they have. These can be used to build other data structures. Wherever
-        possible, comparisons with other languages are drawn.
-      </Description>
-    </Container>
+export function PostCard({
+  number,
+  title,
+  createdAt,
+  description,
+}: PostCardProps) {
+  return (
+    <NavLink to={`/post/${number}`}>
+      <Container>
+        <header>
+          <h4>{title}</h4>
+          <span>{createdAt}</span>
+        </header>
+
+        <Description>{description}</Description>
+      </Container>
+    </NavLink>
   )
 }

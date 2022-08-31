@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 148px 1fr;
   align-items: center;
   background: ${(props) => props.theme['base-profile']};
   box-shadow: box-shadow: 0px 2px 28px rgba(0, 0, 0, 0.2);
@@ -11,6 +12,8 @@ export const Container = styled.div`
   overflow: scroll;
 
   @media(max-width: 768px) {
+    display: flex;
+    align-items: center;
     flex-direction: column;
     padding: 1rem;
     margin-top: 1rem;
@@ -42,6 +45,7 @@ export const HeaderCard = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  /* background: red; */
 
   @media (max-width: 768px) {
     align-items: center;

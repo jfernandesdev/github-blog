@@ -3,6 +3,14 @@ import styled from 'styled-components'
 export const PostContent = styled.div`
   padding: 1.5rem 2rem;
 
+  img {
+    max-width: 100%;
+  }
+
+  ul {
+    padding-left: 1rem;
+  }
+
   @media (max-width: 768px) {
     padding: 1rem 0.5rem;
   }

@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import { Container, HeaderCard, Title, FooterCard } from './styles'
 
 import {
@@ -8,36 +9,46 @@ import {
   FaComment,
 } from 'react-icons/fa'
 
-export function PostInfoHeader() {
+interface PostInfoHeaderProps {
+  title: string
+  urlGithub: string
+  author: string
+  date: string
+  comments: number
+}
+export function PostInfoHeader({
+  title,
+  urlGithub,
+  author,
+  date,
+  comments,
+}: PostInfoHeaderProps) {
   return (
     <Container>
       <HeaderCard>
-        <a href="/">
+        <NavLink to="/">
           <FaChevronLeft /> VOLTAR
-        </a>
+        </NavLink>
 
-        <a
-          href="https://github.com/jfernandesdev"
-          target="_blank"
-          rel="nofollow noreferrer"
-        >
+        <a href={urlGithub} target="_blank" rel="nofollow noreferrer">
           VER NO GITHUB <FaExternalLinkAlt />
         </a>
       </HeaderCard>
 
-      <Title>JavaScript data types and data structures</Title>
+      <Title>{title}</Title>
 
       <FooterCard>
         <span>
           <FaGithub />
-          jfernandesdev
+          {author}
         </span>
         <span>
           <FaCalendarDay />
-          Há 1 dia
+          {date}
         </span>
         <span>
-          <FaComment />5 comentários
+          <FaComment />
+          {comments} comentário(s)
         </span>
       </FooterCard>
     </Container>

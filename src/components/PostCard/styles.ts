@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Container = styled.a`
+export const Container = styled.div`
   background: ${(props) => props.theme['base-post']};
   border-radius: 10px;
   border: 2px solid transparent;
